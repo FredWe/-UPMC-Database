@@ -76,4 +76,11 @@ Cette base est déjà construite, elle appartient au schéma postgres : pour 
 	
 12. Quelles sont les quantités de vin produites par région. Donner la liste ordonnée par quantité décroissante.
 
-	S12: 
+	S12: `SELECT sum(quantite) AS sum_quantite,region FROM dba01.producteurs JOIN dba01.recoltes ON num = nprod GROUP BY region ORDER BY sum_quantite DESC;`13. Quelle est la quantité de vin produite de degré >12?
+	S13: `SELECT sum(quantite) FROM dba01.recoltes JOIN dba01.vins ON nvin = num WHERE degre > 12;`
+14. Quel est le cru ou les crus au plus fort degré?
+	S14: `SELECT * FROM dba01.vins WHERE degre = (SELECT max(degre) FROM dba01.vins);`
+15. Donner la liste ordonnée des crus.
+	S15: `SELECT * FROM dba01.vins ORDER BY cru;`
+16. Donner la liste ordonnée des crus récoltés.
+	S16: ``
