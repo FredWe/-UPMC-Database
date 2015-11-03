@@ -1,4 +1,4 @@
-# -UPMC-Database
+# _UPMC_Database
 
 Base de donnee
 
@@ -83,4 +83,8 @@ Cette base est déjà construite, elle appartient au schéma postgres : pour 
 15. Donner la liste ordonnée des crus.
 	S15: `SELECT * FROM dba01.vins ORDER BY cru;`
 16. Donner la liste ordonnée des crus récoltés.
-	S16: ``
+	S16: `SELECT distinct cru FROM dba01.vins JOIN dba01.recoltes ON num = nvin ORDER BY cru;` ou `SELECT cru FROM dba01.vins JOIN dba01.recoltes ON num = nvin GROUP BY cru ORDER BY cru;`
+17. Quel est donc le cru non récolté?
+	S17: `(SELECT distinct cru FROM dba01.vins) EXCEPT (SELECT distinct cru FROM dba01.vins JOIN dba01.recoltes ON num = nvin);` ou `SELECT distinct cru FROM dba01.vins WHERE num NOT IN (SELECT nvin FROM dba01.recoltes);`
+18. Donner la liste ordonnée des crus et la quantité par cru?
+	S18: ``
